@@ -9,9 +9,8 @@ const app = express();
 // ===============================
 // CONFIGURATION CORS
 // ===============================
-const allowedOrigins = process.env.CLIENT_URL.split(',');
 app.use(cors({
-  origin: allowedOrigins,
+  origin: 'https://boking-main-xv5d.vercel.app',
   credentials: true
 }));
 
