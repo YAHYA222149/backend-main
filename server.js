@@ -163,7 +163,7 @@ app.get('/api/test-stripe', async (req, res) => {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     
 
-    app.get('/api/image/:filename', (req, res) => {
+  app.get('/uploads/images/:filename', (req, res) => {
   const filename = req.params.filename;
   const imagePath = path.join(__dirname, 'uploads/images', filename);
   // Vérifier si le fichier existe
