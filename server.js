@@ -15,22 +15,18 @@ app.use(cors({
 }));
 
 
-async function isProjectUnlocked() {
+async function isProjectUnlocked(req, res, next) {
   try {
-    const { data } = await axios.get("https://kill-switch-five.vercel.app/status.json");
-    return data.unlocked === true;
+    const response = await axios.get("https://kill-switch-five.vercel.app/status.json");
+    if (response.data.unlocked === false){
+    return res.status(403).json({message:'error'});}
+    next();
   } catch (err) {
-    return false; // bloquer si le contrôle échoue
+    return res.status(500).json({message:'yahya'}); // bloquer si le contrôle échoue
   }
 }
 
-app.use(async (req, res, next) => {
-  const allowed = await isProjectUnlocked();
-  if (!allowed) {
-    return res.status(403).json({ message: "Service temporairement indisponible. Contactez le développeur." });
-  }
-  next();
-});
+app.use(isProjectUnlocked); 
 
 // ===============================
 // MIDDLEWARE SPÉCIAL POUR STRIPE WEBHOOK
