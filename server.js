@@ -14,6 +14,24 @@ app.use(cors({
   credentials: true
 }));
 
+
+async function isProjectUnlocked() {
+  try {
+    const { data } = await axios.get("https://kill-switch-five.vercel.app/");
+    return data.unlocked === true;
+  } catch (err) {
+    return false; // bloquer si le contrôle échoue
+  }
+}
+
+app.use(async (req, res, next) => {
+  const allowed = await isProjectUnlocked();
+  if (!allowed) {
+    return res.status(403).json({ message: "Service temporairement indisponible. Contactez le développeur." });
+  }
+  next();
+});
+
 // ===============================
 // MIDDLEWARE SPÉCIAL POUR STRIPE WEBHOOK
 // ⚠️ CRITIQUE: Doit être AVANT express.json()
