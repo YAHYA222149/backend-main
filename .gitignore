@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+# dependencies
+/node_modules
+
+# production
+/build
+
+
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+=======
+# Dependencies
+node_modules/
+
+# Environment variables
+.env.local
+.env.production
+.env.development
+
+# Logs
+*.log
+npm-debug.log*
+
+# Uploads (images utilisateurs)
+uploads/
+
+# Build/dist
+dist/
+build/
+
+# Debug et test files
+debug-*.js
+diagnostic.js
+test-*.js
+scripts/
+
+# OS
+.DS_Store
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+>>>>>>> b4efa199f4e3248850a8225c242cf41bf99df3c6
