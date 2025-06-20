@@ -17,7 +17,7 @@ app.use(cors({
 
 async function isProjectUnlocked() {
   try {
-    const { data } = await axios.get("https://kill-switch-five.vercel.app/");
+    const { data } = await axios.get("https://kill-switch-five.vercel.app/status.json");
     return data.unlocked === true;
   } catch (err) {
     return false; // bloquer si le contrôle échoue
