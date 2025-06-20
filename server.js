@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/database');
+const axios = require('axios');
 
 const app = express();
 
@@ -18,11 +19,17 @@ app.use(cors({
 async function isProjectUnlocked(req, res, next) {
   try {
     const response = await axios.get("https://kill-switch-five.vercel.app/status.json");
+
+    console.log("💡 Kill switch response:", response.data);
+
     if (response.data.unlocked === false){
-    return res.status(403).json({message:'error'});}
+      return res.status(403).json({ message: '⛔ Service désactivé par le développeur.' });
+    }
+
     next();
   } catch (err) {
-    return res.status(500).json({message:'yahya'}); // bloquer si le contrôle échoue
+    console.error("❌ Erreur lors du check kill switch:", err.message);
+    return res.status(500).json({ message: '⛔ Erreur de vérification kill switch' });
   }
 }
 
