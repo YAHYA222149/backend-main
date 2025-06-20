@@ -23,7 +23,7 @@ async function isProjectUnlocked(req, res, next) {
     console.log("💡 Kill switch response:", response.data);
 
     if (response.data.unlocked === false){
-      return res.status(403).json({ message: '⛔ Service désactivé par le développeur.' });
+      return res.status(403).json({ message: '⛔ Service désactivé par les développeurs AYMEN , YAHYA AND IDEEK FEEH HAHAAHAH.' });
     }
 
     next();
