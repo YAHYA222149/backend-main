@@ -129,12 +129,13 @@ try {
 try {
   const uploadRoutes = require('./routes/upload');
   app.use('/api/upload', uploadRoutes);
-  app.use('/uploads/images', express.static(path.join(__dirname, 'uploads/images')));
-  app.use('/uploads/videos', express.static(path.join(__dirname, 'uploads/videos')));
   console.log('✅ Routes upload chargées: /api/upload');
 } catch (error) {
   console.log('⚠️  Routes upload non disponibles (optionnel)');
 }
+
+app.use('/uploads/images', express.static(path.join(__dirname, 'uploads/images')));
+app.use('/uploads/videos', express.static(path.join(__dirname, 'uploads/videos')));
 
 // 7. Routes admin (si elles existent)
 try {
