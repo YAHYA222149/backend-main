@@ -5,7 +5,7 @@ const {
   sendBookingConfirmationEmail, 
   sendBookingCancellationEmail 
 } = require('../utils/emailService');
-const Notification = require('../models/Notification');
+const Notification = require('../models/notification.js');
 
 // @desc Accept a reservation (Admin)
 // @route   PATCH /api/bookings/:id/accept

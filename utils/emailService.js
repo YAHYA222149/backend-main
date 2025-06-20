@@ -414,7 +414,7 @@ const sendDailyReminders = async () => {
 
         // Create a notification
         try {
-          const Notification = require('../models/Notification');
+          const Notification = require('../models/notification');
           await Notification.createBookingReminder(booking.client._id, booking);
         } catch (notifError) {
           console.error('⚠️ Error creating reminder notification:', notifError);
