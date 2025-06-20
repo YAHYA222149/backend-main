@@ -42,6 +42,9 @@ app.use((req, res, next) => {
 // ===============================
 connectDB();
 
+app.use('/uploads/images', express.static(path.join(__dirname, 'uploads/images')));
+app.use('/uploads/videos', express.static(path.join(__dirname, 'uploads/videos')));
+
 // ===============================
 // ROUTE DE SANTÉ
 // ===============================
@@ -127,15 +130,14 @@ try {
 
 // 6. Routes d'upload (si elles existent)
 try {
-  const uploadRoutes = require('./routes/upload');
+  const uploadRoutes = require('./routes/upload.js');
   app.use('/api/upload', uploadRoutes);
   console.log('✅ Routes upload chargées: /api/upload');
 } catch (error) {
   console.log('⚠️  Routes upload non disponibles (optionnel)');
 }
 
-app.use('/uploads/images', express.static(path.join(__dirname, 'uploads/images')));
-app.use('/uploads/videos', express.static(path.join(__dirname, 'uploads/videos')));
+
 
 // 7. Routes admin (si elles existent)
 try {
