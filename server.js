@@ -162,6 +162,21 @@ app.get('/api/test-stripe', async (req, res) => {
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     
+
+    app.get('/api/image/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const imagePath = path.join(__dirname, 'uploads/images', filename);
+  // Vérifier si le fichier existe
+  if (!filename || filename.includes('..')) {
+    return res.status(400).json({ success: false, message: 'Nom de fichier invalide' });
+  }
+  res.sendFile(imagePath, err => {
+    if (err) {
+      res.status(404).json({ success: false, message: 'Image non trouvée' });
+    }
+  });
+});
+
     // Test simple - récupérer l'info du compte
     const account = await stripe.accounts.retrieve();
     
