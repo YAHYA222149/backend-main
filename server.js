@@ -11,7 +11,7 @@ const app = express();
 // CONFIGURATION CORS
 // ===============================
 app.use(cors({
-  origin: 'https://boking-main-xv5d.vercel.app',
+  origin: 'https://boking-main-xv5d.vercel.app'||'https://froontend-amber.vercel.app',
   credentials: true
 }));
 
